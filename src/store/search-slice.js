@@ -49,13 +49,14 @@ export const fetchSearch = (searchFilter) => {
 
       // Find data match search filter
       const searchedItems = items.filter(
-        (item) =>
-          item.name.includes(searchFilter) ||
-          item.category.includes(searchFilter)
+        (item) => 
+           item.name.includes(searchFilter) 
+        
       );
 
       // Send data to the reducer
       dispatch(addItems(searchedItems));
+      dispatch(loadingState(false))
     };
 
     fetchData();

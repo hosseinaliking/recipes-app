@@ -41,7 +41,7 @@ const Recipes = () => {
 
                 <div className="absolute z-10 top-0 left-0 right-0 bottom-0 bg-slate-500 opacity-30" />
 
-                <p className="absolute z-20 bottom-[10%] left-[50%] translate-x-[-50%] translate-y-[-50%] font-bold text-white text-[20px]" >{item.name}</p>
+                <p className="w-full text-center absolute z-20 bottom-[10%] left-[50%] translate-x-[-50%] translate-y-[-50%] font-bold text-white text-[20px]" >{item.name}</p>
               </div>
             </Link>
           );

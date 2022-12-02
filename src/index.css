@@ -8,8 +8,16 @@
   }
 
   body {
-    overflow-x: hidden;
+    overflow: hidden;
     overflow-y: scroll;
+  }
+
+  .active {
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  }
+
+  .inActive {
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
   }
 
   .custom-btn {

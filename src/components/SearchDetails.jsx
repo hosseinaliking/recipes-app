@@ -2,46 +2,49 @@ import React, { useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-//* Redux *//
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCountry } from "../store/country-slice";
-
 //* Components *//
 import Header from "./Header";
 import Search from "./Search";
 
-//* Router *//
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+//* Redux *//
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSearch } from "../store/search-slice";
+
+//* Rouer *//
+import { useParams, Link } from "react-router-dom";
 
 //* Images *//
-import Loading from "../asset/image/Loading.gif";
+import loadingGif from "../asset/image/Loading.gif";
 
-const Country = () => {
-  const items = useSelector((state) => state.country.items);
-  const loading = useSelector((state) => state.country.isLoading);
+const SearchDetails = () => {
+  const { searchParam } = useParams();
   const dispatch = useDispatch();
-
-  const { countryName } = useParams();
+  const items = useSelector((state) => state.search.items);
+  const loading = useSelector((state) => state.search.isLoading);
 
   useEffect(() => {
-    dispatch(fetchCountry(countryName));
-  }, [countryName]);
+    dispatch(fetchSearch(searchParam));
+  }, [searchParam]);
 
   return (
     <div className="max-w-[1024px] mx-auto">
       <Header />
       <Search />
 
+      {!searchParam && (
+        <p className="h-24 flex items-center justify-center font-bold mt-5">
+          Please enter the search a recipe name
+        </p>
+      )}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-10 gap-2 gap-y-5">
-        {!loading && items.length === 0 && (
-          <div className="col-span-3 flex items-center justify-center h-24" >
-            <p className="font-bold" >Please select a country in the search menu</p>
-          </div>
-        )}
         {loading ? (
-          <div className="col-span-3 flex justify-center">
-            <img src={Loading} alt="loading spinner" className="h-24 w-24" />
+          <div className="col-span-3 flex justify-center items-center h-[240px] ">
+            <img
+              src={loadingGif}
+              alt="Loading spinner gif"
+              className="h-24 w-24"
+            />
           </div>
         ) : (
           items.map((item, index) => {
@@ -74,4 +77,4 @@ const Country = () => {
   );
 };
 
-export default Country;
+export default SearchDetails;

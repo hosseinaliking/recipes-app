@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import 'react-lazy-load-image-component/src/effects/blur.css';
-
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 //* Components *//
 import Header from "./Header";
@@ -36,8 +35,7 @@ const RecipesDetails = () => {
       <div className="max-w-[1024px] mx-auto mt-5 px-2">
         {loading ? (
           <div className="flex justify-center items-center h-[240px] ">
-            <LazyLoadImage
-              effect="blur"
+            <img
               src={Loading}
               alt="Loading spinner gif"
               className="h-24 w-24"
